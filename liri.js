@@ -10,8 +10,8 @@ var client = new Twitter({
 
 client.get('favorites/list', function(error, tweets, response) {
   if(error) throw error;
-  console.log(tweets);  // The favorites.
-  console.log(response);  // Raw response object.
+  console.log(tweets);
+  console.log(response);
 });
 
 var spotify = new Spotify(keys.spotify);
@@ -53,6 +53,37 @@ switch (action) {
         dwis();
         break;
 }
+
+
+function twitter() {
+    var fs = require('fs');
+
+    var twitterKey = require('./keys.js');
+
+    var Twitter = require('twitter');
+
+    var client = new Twitter(twitterKey.twitterKeys);
+
+    var params = { screen_name: value, count: 20 };
+    client.get('statuses/user_timeline', params, function(error, tweets, response) {
+        if (!error) {
+
+            console.log("===");
+            console.log("Here are the most recent tweets");
+
+            for (var i = 0; i < tweets.length; i++) {
+
+                console.log("___");
+                console.log("Tweeted on: " + tweets[i].created_at);
+                console.log(tweets[i].text);
+
+            }
+        }
+    });
+}
+
+
+
 
 
 
