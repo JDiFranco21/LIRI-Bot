@@ -83,7 +83,60 @@ function twitter() {
 }
 
 
+function spotify() {
 
+    if (value != false) {
+        var spotify = require('spotify');
 
+        spotify.search({
+            type: 'track',
+            query: value + '&limit=1&'
+        }, function(error, data) {
+            if (error) {
+                console.log('Error occurred: ' + error);
+                return;
+            }
+            console.log("---------------------------------------------------");
+            console.log(" ");
+            console.log("The song you entered " + value + ".");
+            console.log(" ");
+            console.log("Here is the song stats");
+            console.log(" ");
+            console.log("Track Title: " + data.tracks.items[0].name);
+            console.log(" ");
+            console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
+            console.log(" ");
+            console.log("Preview URL: " + data.tracks.items[0].preview_url);
+            console.log(" ");
+            console.log("---------------------------------------------------");
+        });
+    } else {
+        {
+            var spotify = require('spotify');
+
+            spotify.search({
+                type: 'track',
+                query: 'led+zepplin+black+dog' + '&limit=1&'
+            }, function(error, data) {
+                if (error) {
+                    console.log('Error occurred: ' + error);
+                    return;
+                }
+                console.log("---------------------------------------------------");
+                console.log(" ");
+                console.log("You didn't enter anything, try this: ");
+                console.log(" ");
+                console.log("Track Title: " + data.tracks.items[0].name);
+                console.log(" ");
+                console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
+                console.log(" ");
+                console.log("Preview URL: " + data.tracks.items[0].preview_url);
+                console.log(" ");
+                console.log("---------------------------------------------------");
+            });
+        }
+
+    }
+}
 
 
